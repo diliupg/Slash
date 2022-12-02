@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "Components/CapsuleComponent.h"
 #include "Bird.generated.h"
 
 UCLASS()
@@ -24,7 +25,9 @@ protected:
 
 	virtual void BeginPlay() override;
 
-public:	
+private:
+	UPROPERTY(VisibleAnywhere )		
+	UCapsuleComponent* Capsule;
 	
 
 	

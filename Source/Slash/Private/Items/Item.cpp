@@ -3,6 +3,7 @@
 
 #include "Items/Item.h"
 #include "Slash/DebugMacros.h"
+#include "Components/CapsuleComponent.h"
 
 // Sets default values
 AItem::AItem()
@@ -18,6 +19,11 @@ void AItem::BeginPlay()
 {
 	Super::BeginPlay();
 
+	int32 AvgInt = Avg<int32>( 5, 3 );
+	UE_LOG( LogTemp, Warning, TEXT( "The average of 5 and 3 is: %d" ), AvgInt );
+
+	int32 AvgFloat= Avg<float>( 4.34, 6.67 );
+	UE_LOG( LogTemp, Warning, TEXT( "The average of  4.34 and 6.67 is: %f" ), AvgFloat );
 }
 
 float AItem::TransformedSin( )
