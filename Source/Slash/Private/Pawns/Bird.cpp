@@ -18,6 +18,8 @@ ABird::ABird()
 
 	BirdMesh = CreateDefaultSubobject<USkeletalMeshComponent>( TEXT( "BirdMesh" ) );
 	BirdMesh->SetupAttachment( GetRootComponent( ) );
+
+	AutoPossessPlayer = EAutoReceiveInput::Player0;
 }
 
 // Called when the game starts or when spawned
