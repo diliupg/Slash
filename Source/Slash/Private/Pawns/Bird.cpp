@@ -7,6 +7,8 @@
 #include "Components/InputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
+#include "GameFramework/SpringArmComponent.h"
+#include "Camera/CameraComponent.h"
 
 // Sets default values
 ABird::ABird()
@@ -21,6 +23,13 @@ ABird::ABird()
 
 	BirdMesh = CreateDefaultSubobject<USkeletalMeshComponent>( TEXT( "BirdMesh" ) );
 	BirdMesh->SetupAttachment( GetRootComponent( ) );
+
+	CameraBoom = CreateDefaultSubobject<USpringArmComponent>( TEXT( "CameraBoom" ) );
+	CameraBoom->SetupAttachment( GetRootComponent( ) );
+	CameraBoom->TargetArmLength = 300.f;
+
+	ViewCamera = CreateDefaultSubobject<UCameraComponent>( TEXT( "ViewCamera" ) );
+	ViewCamera->SetupAttachment( CameraBoom );
 
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
 }
@@ -69,5 +78,6 @@ void ABird::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	{
 		EnhancedInputComponent->BindAction( MoveAction, ETriggerEvent::Triggered, this, &ABird::Move );
 	}
+
 }
 
