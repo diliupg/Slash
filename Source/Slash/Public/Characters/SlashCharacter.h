@@ -7,6 +7,8 @@
 #include "InputActionValue.h"
 #include "SlashCharacter.generated.h"
 
+#include "UObject/ObjectPtr.h"
+
 class UInputMappingContext;
 class UInputAction;
 class USpringArmComponent;
@@ -31,17 +33,18 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditAnywhere, Category = Input )
-	UInputMappingContext* SlashContext;
+	TObjectPtr<UInputMappingContext> SlashContext;
 	
 	UPROPERTY( EditAnywhere, Category = Input )
-	UInputAction* MovementAction;
+	TObjectPtr<UInputAction> MovementAction;
 
 	void Move( const FInputActionValue& Value );
 
 private:
 
 	UPROPERTY( VisibleAnywhere )
-	USpringArmComponent* CameraBoom;
+	//USpringArmComponent* CameraBoom;
+	TObjectPtr<USpringArmComponent>CameraBoom;
 
 	UPROPERTY( VisibleAnywhere )
 	UCameraComponent* ViewCamera;
