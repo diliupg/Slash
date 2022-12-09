@@ -5,9 +5,10 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
+#include "UObject/ObjectPtr.h"
 #include "SlashCharacter.generated.h"
 
-#include "UObject/ObjectPtr.h"
+
 
 class UInputMappingContext;
 class UInputAction;
@@ -23,10 +24,9 @@ class SLASH_API ASlashCharacter : public ACharacter
 public:
 
 	ASlashCharacter();
-
 	virtual void Tick( float DeltaTime ) override;
-
 	virtual void SetupPlayerInputComponent( class UInputComponent* PlayerInputComponent ) override;
+	virtual void Jump( ) override;
 
 protected:
 
@@ -38,7 +38,14 @@ protected:
 	UPROPERTY( EditAnywhere, Category = Input )
 	TObjectPtr<UInputAction> MovementAction;
 
+	UPROPERTY( EditAnywhere, Category = Input )
+	TObjectPtr<UInputAction> LookAction;
+
+	UPROPERTY( EditAnywhere, Category = Input )
+	TObjectPtr<UInputAction> JumpAction;
+
 	void Move( const FInputActionValue& Value );
+	void Look( const FInputActionValue& Value );
 
 private:
 
